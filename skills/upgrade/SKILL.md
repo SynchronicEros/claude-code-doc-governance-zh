@@ -7,6 +7,8 @@ description: 升級「文件治理起手式」：比對公開範本的最新版�
 
 範本正本在公開 repo `SynchronicEros/eros-kmu-learning-example`（CC BY 4.0）。本 skill 不內建範本內容，一律在執行當下下載最新版做比對。
 
+**指令一律用 Bash 執行**（macOS 的終端機；Windows 用 Git Bash），不要用 PowerShell 或命令提示字元：PowerShell 的 `curl` 是另一個指令，`B=…` 的寫法也不能用。Windows 上找不到 Bash 時就停下，請使用者安裝 [Git for Windows](https://git-scm.com/downloads/win)（選項用預設），裝完重開 Claude Code。**每次執行時，`B=…` 與它後面的 curl 要寫在同一個指令裡**（用 `&&` 串起來）：每次呼叫之間不保留變數，分開執行會因網址缺少前綴而失敗。
+
 ```bash
 B=https://raw.githubusercontent.com/SynchronicEros/eros-kmu-learning-example/main
 ```
