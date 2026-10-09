@@ -1,9 +1,9 @@
 ---
-name: init
+name: setup
 description: 在目前資料夾建立「文件治理起手式」：從公開範本下載 CLAUDE.md、決策紀錄、用途目錄與授權檔。使用者說「建立治理架構」「套用文件治理起手式」「初始化治理」時使用。
 ---
 
-# init：建立文件治理起手式
+# setup：建立文件治理起手式
 
 範本正本在公開 repo `SynchronicEros/eros-kmu-learning-example`（CC BY 4.0）。本 skill 不內建範本內容，一律在執行當下下載最新版。
 

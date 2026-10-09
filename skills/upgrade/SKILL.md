@@ -15,7 +15,7 @@ B=https://raw.githubusercontent.com/SynchronicEros/eros-kmu-learning-example/mai
 
 ## 前提
 
-目前資料夾須有 `CLAUDE.md` 與 `決策紀錄.md`。沒有的話，請使用者先用 `init` skill 建立，或確認是不是開錯資料夾。
+目前資料夾須有 `CLAUDE.md` 與 `決策紀錄.md`。沒有的話，請使用者先用 `setup` skill 建立，或確認是不是開錯資料夾。
 
 ## 先問使用者要做哪一種
 
