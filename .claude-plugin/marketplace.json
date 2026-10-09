@@ -1,0 +1,16 @@
+{
+  "name": "claude-code-doc-governance-zh",
+  "owner": {
+    "name": "SynchronicEros"
+  },
+  "metadata": {
+    "description": "文件治理起手式（skill）：init 自公開範本建立 CLAUDE.md、決策紀錄與用途目錄；upgrade 比對範本更新並依擴增指南擴增規範"
+  },
+  "plugins": [
+    {
+      "name": "doc-governance",
+      "source": "./",
+      "description": "文件治理起手式（skill）：init 自公開範本建立 CLAUDE.md、決策紀錄與用途目錄；upgrade 比對範本更新並依擴增指南擴增規範"
+    }
+  ]
+}
