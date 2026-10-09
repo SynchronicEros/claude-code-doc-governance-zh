@@ -34,14 +34,16 @@ B=https://raw.githubusercontent.com/SynchronicEros/eros-kmu-learning-example/mai
 | `研究計畫/README.md` | `%E7%A0%94%E7%A9%B6%E8%A8%88%E7%95%AB/README.md` |
 | `自學筆記/README.md` | `%E8%87%AA%E5%AD%B8%E7%AD%86%E8%A8%98/README.md` |
 
+用途目錄的 `README.md` 只下載使用者在第一節第 3 步選的那幾個；其餘 5 個檔案一律下載。
+
 每個檔案用 `curl -fsSL "$B/<網址後段>" -o "<檔案>"` 下載（用途目錄先 `mkdir -p`）。**一律用 curl 原樣下載，不要用網頁讀取工具，也不要自己改寫或摘要內容。**任何一個下載失敗就停下來回報，不要用記憶補寫。
 
 ## 三、下載後
 
-1. 若使用者沒選全部三個用途目錄：把 `CLAUDE.md`「目錄結構」表中沒建立的列刪掉，並告知使用者改了哪幾列。其餘內容一律不動。
+1. 若使用者沒選全部三個用途目錄：把 `CLAUDE.md`「目錄結構」表與 `README.md`「目錄結構」表中沒建立的列刪掉，並告知使用者兩個檔各改了哪幾列。兩檔其餘內容一律不動。
 2. `LICENSE` 與 `README.md` 的〈授權與致謝〉一節是範本的授權標示，保留原樣；README 其他段落可由使用者日後自行改寫。
 3. 若此資料夾還不是 git repo，詢問是否執行 `git init`；同意才執行。提醒：要放上 GitHub 時請建 **private** repo，社團與研究文件不適合公開。
-4. 回報：實際建立了哪些檔案、哪些因已存在而略過、`CLAUDE.md` 改了哪幾列。
+4. 回報：實際建立了哪些檔案、哪些因已存在而略過、`CLAUDE.md` 與 `README.md` 各改了哪幾列。
 5. 告訴使用者下一步：先讀 `CLAUDE.md`；在 `決策紀錄.md` 從 D2 開始寫自己的決定；架構不夠用時說「升級治理架構」（`upgrade` skill）。
 
 ## 不做的事
