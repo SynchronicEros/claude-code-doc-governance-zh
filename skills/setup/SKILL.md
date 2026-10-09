@@ -17,6 +17,8 @@ description: 在目前資料夾建立「文件治理起手式」：從公開範�
 
 ## 二、下載
 
+**本節與第三節的指令一律用 Bash 執行**（macOS 的終端機；Windows 用 Git Bash），不要用 PowerShell 或命令提示字元：PowerShell 的 `curl` 是另一個指令，`B=…` 的寫法也不能用。
+
 範本網址前綴（中文路徑已編碼，Windows 的 Git Bash 也能用）：
 
 ```bash
@@ -36,18 +38,20 @@ B=https://raw.githubusercontent.com/SynchronicEros/eros-kmu-learning-example/mai
 
 用途目錄的 `README.md` 只下載使用者在第一節第 3 步選的那幾個；其餘 5 個檔案一律下載。
 
-每個檔案用 `curl -fsSL "$B/<網址後段>" -o "<檔案>"` 下載（用途目錄先 `mkdir -p`）。**一律用 curl 原樣下載，不要用網頁讀取工具，也不要自己改寫或摘要內容。**任何一個下載失敗就停下來回報，不要用記憶補寫。
+每個檔案用 `curl -fsSL "$B/<網址後段>" -o "<檔案>"` 下載（用途目錄先 `mkdir -p`）。**一律用 curl 原樣下載，不要用網頁讀取工具，也不要自己改寫或摘要內容。**任何一個下載失敗就停下來回報，不要用記憶補寫，並列出本次已下載的檔，請使用者選：(甲) 刪除本次已下載的檔，之後重試；(乙) 保留。重試時，本次自己下載的檔不算衝突。連不上 `raw.githubusercontent.com`（例如校園網路擋住）時，告知替代做法：到範本 repo 網頁按「Use this template」建立，再依範本 README 抓到電腦。
 
 ## 三、下載後
 
+第 1、2 步只套用在**本次新下載的檔**；第一節選了乙、因已存在而略過的檔一律不動。
+
 1. 若使用者沒選全部三個用途目錄：把 `CLAUDE.md`「目錄結構」表與 `README.md`「目錄結構」表中沒建立的列刪掉，並告知使用者兩個檔各改了哪幾列。兩檔其餘內容一律不動。
-2. `LICENSE` 與 `README.md` 的〈授權與致謝〉一節是範本的授權標示，保留原樣；README 其他段落可由使用者日後自行改寫。
-3. 若此資料夾還不是 git repo，詢問是否執行 `git init`；同意才執行。提醒：要放上 GitHub 時請建 **private** repo，社團與研究文件不適合公開。
+2. `LICENSE` 與 `README.md` 的〈授權與致謝〉一節是範本的授權標示，保留原樣；README 其他段落可由使用者日後自行改寫。若 `README.md` 因已存在而沒有下載，提醒使用者：範本為 CC BY 4.0，須標示來源；提議在使用者的 README 末尾加一行「本資料夾之治理架構改作自 [eros-kmu-learning-example](https://github.com/SynchronicEros/eros-kmu-learning-example)（CC BY 4.0，作者 eros_tsung_pao_lin）」，**使用者同意才加**。
+3. 若此資料夾還不是 git repo，詢問是否執行 `git init`；同意才執行。詢問時說明：`CLAUDE.md`〈二、版本規則〉靠 git 保留歷史版本，不用 git 的話這條規則無法運作，舊版要自己另存；macOS 第一次執行 git 可能跳出安裝「命令列開發者工具」的視窗，按「安裝」即可。提醒：要放上 GitHub 時請建 **private** repo，社團與研究文件不適合公開。
 4. 回報：實際建立了哪些檔案、哪些因已存在而略過、`CLAUDE.md` 與 `README.md` 各改了哪幾列。
-5. 告訴使用者下一步：先讀 `CLAUDE.md`；在 `決策紀錄.md` 從 D2 開始寫自己的決定；架構不夠用時說「升級治理架構」（`upgrade` skill）。
+5. 告訴使用者下一步：先讀 `CLAUDE.md`；在 `決策紀錄.md` 從 D2 開始寫自己的決定；架構不夠用時說「升級治理架構」（`upgrade` skill）。若本次下載了 `README.md`，另提醒：它是範本的介紹——「快速開始」第 1 步你已完成，「更新紀錄」是範本自己的歷史，「這是什麼」提到的用途以你實際建立的目錄為準；這些段落可自行改寫或刪除，只有〈授權與致謝〉一節要保留。
 
 ## 不做的事
 
-- 不覆寫、不刪除任何既有檔案。
+- 不覆寫、不刪除任何既有檔案（唯一例外：下載失敗時，使用者選甲，刪除本次自己下載的檔）。
 - 不自行 commit 或 push。
 - 不建立公開 repo。
