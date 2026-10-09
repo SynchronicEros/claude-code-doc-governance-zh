@@ -9,13 +9,12 @@
 
 ## 安裝
 
-**需要 Claude Code（付費方案）；Codex 免費版不能安裝。** 還沒裝 Claude Code，見[官方安裝說明](https://code.claude.com/docs/zh-TW/setup)。
+- 需要 **Claude Code（付費方案）**；Codex 免費版不能安裝（只有 Codex 的人，改照[範本 repo](https://github.com/SynchronicEros/eros-kmu-learning-example) README「只用 Codex 的人」一節）。
+- 還沒裝 Claude Code：見[官方安裝說明](https://code.claude.com/docs/zh-TW/setup)。
+- 須能連上 GitHub，並有 `curl`（macOS 內建）。
+- Windows 需要 Git Bash：安裝 [Git for Windows](https://git-scm.com/downloads/win) 就有（選項都用預設即可），裝完重開 Claude Code。
 
-須能連上 GitHub，並有 `curl`（macOS 內建）。
-
-Windows 需要 Git Bash：安裝 [Git for Windows](https://git-scm.com/downloads/win) 就有（選項都用預設即可），裝完重開 Claude Code。
-
-下面兩行指令貼在**終端機**（Mac：「終端機」App；Windows：PowerShell），貼上後按 Enter；不是貼在 Claude Code 的對話框。已經在 Claude Code 對話框裡的話，改打 `/plugin marketplace add …` 與 `/plugin install …`（去掉開頭的 `claude`，改成斜線）。
+**指令貼在哪裡**：貼在**終端機**，貼上後按 Enter（Mac：按 ⌘＋空白鍵開 Spotlight，搜尋「終端機」；Windows：在開始選單搜尋「PowerShell」）。不是貼在 Claude Code 的對話框。若終端機回應 `command not found`（找不到指令），表示終端機裡還沒有 Claude Code：照上面的官方安裝說明安裝；只用桌面版的人，改用下方「對話框裡」的寫法。
 
 ```bash
 claude plugin marketplace add SynchronicEros/claude-code-doc-governance-zh
@@ -25,30 +24,59 @@ claude plugin marketplace add SynchronicEros/claude-code-doc-governance-zh
 claude plugin install doc-governance@claude-code-doc-governance-zh
 ```
 
+**對話框裡**（已經在 Claude Code 裡，或只用桌面版）：改打 `/plugin marketplace add SynchronicEros/claude-code-doc-governance-zh`，再打 `/plugin install doc-governance@claude-code-doc-governance-zh`；會跳出英文選單，選第一個 **Install for you (user scope)**。
+
 安裝時若出現英文訊息「SSH not configured, cloning via HTTPS」或「userConfig options not yet set」，可以忽略（沒設定就用預設值）。
 
 裝好後要**開新的 session（一次新對話）**才會生效：終端機版先打 `/exit` 離開，再打 `claude`；桌面版開一個新對話。
 
-**總目錄與單一 repo 二擇一**：同一個 Mod 或 skill 只從一處安裝（skill 兩處都裝會出現兩份）。用 `claude plugin list` 檢查；若同時看到 `doc-governance@claude-code-doc-governance-zh` 與 `doc-governance@claude-code-mods-zh`，移除其中一份：
+**總目錄與本 repo 二擇一**：同一個 Mod 或 skill 只從一處安裝（skill 兩處都裝會出現兩份）。用 `claude plugin list` 檢查；若同時看到 `doc-governance@claude-code-doc-governance-zh` 與 `doc-governance@claude-code-mods-zh`，**保留總目錄那份**，移除本 repo 這份（只執行一次）：
 
 ```bash
-claude plugin uninstall doc-governance@claude-code-mods-zh
+claude plugin uninstall doc-governance@claude-code-doc-governance-zh
 ```
+
+再用 `claude plugin list` 確認只剩一份。重複執行會出現 ✘ 與「not installed」，表示已經移除過，無害。
+
+## 更新
+
+有新版時，在終端機依你當初的安裝來源執行兩行，再開新的 session。從本 repo 裝的：
+
+```bash
+claude plugin marketplace update claude-code-doc-governance-zh
+```
+
+```bash
+claude plugin update doc-governance@claude-code-doc-governance-zh
+```
+
+從總目錄裝的：把兩行裡的 `claude-code-doc-governance-zh` 換成 `claude-code-mods-zh`。只打第二行會顯示「already at the latest version」，因為還沒先抓新的目錄。
+
+0.1.3 起 skill `init` 改名為 `setup`：更新後改打 `/doc-governance:setup`，或照舊說「建立治理架構」。
 
 全部 Mod 與 skill 見總目錄 [claude-code-mods-zh](https://github.com/SynchronicEros/claude-code-mods-zh)。
 
-**怎麼叫出來**：直接對 Claude 說「建立治理架構」，或打 `/doc-governance:setup`。（別跟 Claude Code 內建的 `/init` 搞混：那個指令會依資料夾裡的程式碼另寫一份 `CLAUDE.md`，不是本範本。）升級同理，說「升級治理架構」或打 `/doc-governance:upgrade`。
+**怎麼叫出來**：先建一個新資料夾，在裡面開 Claude Code（不要在家目錄或桌面直接跑）。終端機版依序執行：
+
+```bash
+mkdir ~/我的治理
+```
+
+```bash
+cd ~/我的治理
+```
+
+```bash
+claude
+```
+
+桌面版則開新對話時選擇該資料夾。接著對 Claude 說「建立治理架構」，或打 `/doc-governance:setup`。（別跟 Claude Code 內建的 `/init` 搞混：那個指令會依資料夾裡的程式碼另寫一份 `CLAUDE.md`，不是本範本。）升級同理，說「升級治理架構」或打 `/doc-governance:upgrade`。
 
 ## 範本從哪裡來
 
 範本內容的正本是公開範本 repo [eros-kmu-learning-example](https://github.com/SynchronicEros/eros-kmu-learning-example)。兩個 skill 都在執行當下用 `curl` 下載最新版，不在 plugin 裡另存一份，所以範本更新後不必更新 plugin，執行 `upgrade` 就比對得到。
 
-也可以不裝 plugin，直接在範本 repo 按「Use this template」建立自己的 repo（建議設為 private）。
-
-## 需求
-
-- 能連上 GitHub（`raw.githubusercontent.com`）。
-- 系統有 `curl`（macOS 內建；Windows 上的 Claude Code 需要 Git Bash，安裝 [Git for Windows](https://git-scm.com/downloads/win) 就有，已附 curl）。
+也可以不裝 plugin，直接在範本 repo 按「Use this template」建立自己的 repo（建議設為 private）；只有 Codex 的人也走這條路，見範本 README「只用 Codex 的人」一節。
 
 ## 授權
 
@@ -59,4 +87,4 @@ claude plugin uninstall doc-governance@claude-code-mods-zh
 
 **English:** Two skills for a minimal document-governance starter kit (git + Claude Code) aimed at student clubs, research projects and study notes. `setup` (say 「建立治理架構」 or type `/doc-governance:setup`; not the built-in `/init`) downloads the template (CLAUDE.md, decision log, expansion guide, folders, license) into the current folder without overwriting anything; `upgrade` compares your files with the latest template and lists only what you do not yet have, or drafts new rules from the expansion guide when you hit a concrete problem. Template content lives in [eros-kmu-learning-example](https://github.com/SynchronicEros/eros-kmu-learning-example) (CC BY 4.0) and is fetched with `curl` at run time; the plugin itself is MIT.
 
-**Install / License (English):** Requires Claude Code (a paid plan); the free Codex tier cannot install it. Needs GitHub access and curl (on Windows, Git Bash from Git for Windows). `claude plugin marketplace add SynchronicEros/claude-code-doc-governance-zh`, then `claude plugin install doc-governance@claude-code-doc-governance-zh`; takes effect in new sessions. Install from either this repo or the index, not both. All mods and skills: [claude-code-mods-zh](https://github.com/SynchronicEros/claude-code-mods-zh). MIT.
+**Install / License (English):** Requires Claude Code (a paid plan); the free Codex tier cannot install it. Needs GitHub access and curl (on Windows, Git Bash from Git for Windows). `claude plugin marketplace add SynchronicEros/claude-code-doc-governance-zh`, then `claude plugin install doc-governance@claude-code-doc-governance-zh`; takes effect in new sessions. Install from either this repo or the index, not both (keep the index copy). To update, run `claude plugin marketplace update` for your source first, then `claude plugin update`. All mods and skills: [claude-code-mods-zh](https://github.com/SynchronicEros/claude-code-mods-zh). MIT.
